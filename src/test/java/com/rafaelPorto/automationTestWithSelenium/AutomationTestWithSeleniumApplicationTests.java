@@ -14,6 +14,7 @@ import resource.PageTest;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 class AutomationTestWithSeleniumApplicationTests {
@@ -59,6 +60,20 @@ class AutomationTestWithSeleniumApplicationTests {
 		Assertions.assertTrue(deleteButton.isDisplayed());
 		deleteButton.click();
 		screenshot();
+	}
+
+	@Test
+	void brokenImages() {
+		currentLinkToTest("Broken Images");
+		screenshot();
+
+		List<WebElement> allImages = driver.findElements(By.xpath(PageTest.brokenImagesList));
+
+		for(WebElement element: allImages) {
+			driver.navigate().to(element.getAttribute("src"));
+			screenshot();
+			driver.navigate().back();
+		}
 	}
 
 	@AfterAll
