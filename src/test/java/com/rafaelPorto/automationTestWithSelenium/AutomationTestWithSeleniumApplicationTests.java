@@ -14,7 +14,6 @@ import resource.PageTest;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @SpringBootTest
 class AutomationTestWithSeleniumApplicationTests {
