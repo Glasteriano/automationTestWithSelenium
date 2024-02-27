@@ -89,6 +89,17 @@ class AutomationTestWithSeleniumApplicationTests {
 		screenshot();
 	}
 
+	@Test
+	void checkbox() {
+		currentLinkToTest("Checkboxes");
+
+		WebElement checkbox = driver.findElement(By.xpath(PageTest.checkbox1));
+		checkbox.click();
+
+		Assertions.assertTrue(checkbox.isSelected());
+		screenshot();
+	}
+
 	@AfterAll
 	public static void end() {
 		driver.quit();

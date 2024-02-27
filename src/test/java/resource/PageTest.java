@@ -7,6 +7,5 @@ public interface PageTest {
     String brokenImagesList = "//*[@id=\"content\"]/div/img";
     String dropdown = "//*[@id=\"dropdown\"]";
     String selectedOption = "//*[@selected=\"selected\"]";
-
-
+    String checkbox1 = "//*[@id=\"checkboxes\"]/input[1]";
 }
