@@ -8,4 +8,8 @@ public interface PageTest {
     String dropdown = "//*[@id=\"dropdown\"]";
     String selectedOption = "//*[@selected=\"selected\"]";
     String checkbox1 = "//*[@id=\"checkboxes\"]/input[1]";
+    String username = "//*[@id=\"username\"]";
+    String password = "//*[@id=\"password\"]";
+    String loginButton = "//*[@id=\"login\"]/button";
+    String errorLogin = "//*[@id=\"flash\"]";
 }

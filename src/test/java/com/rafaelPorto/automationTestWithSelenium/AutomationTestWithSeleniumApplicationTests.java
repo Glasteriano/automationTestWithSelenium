@@ -1,9 +1,6 @@
 package com.rafaelPorto.automationTestWithSelenium;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -40,8 +37,8 @@ class AutomationTestWithSeleniumApplicationTests {
         }
     }
 
-	@BeforeAll
-	public static void initialise() {
+	@BeforeEach
+	public void initialise() {
 		driver = new EdgeDriver();
 		driver.get(Database.webpage);
 		driver.manage().window().maximize();
@@ -100,9 +97,48 @@ class AutomationTestWithSeleniumApplicationTests {
 		screenshot();
 	}
 
-	@AfterAll
-	public static void end() {
-		driver.quit();
+	@Test
+	void invalidUsernameAndPassword() {
+		currentLinkToTest("Form Authentication");
+		String expected = "Your username is invalid!\n×";
+
+		WebElement username = driver.findElement(By.xpath(PageTest.username));
+		username.sendKeys(Database.wrongUsernameLoginPage);
+		screenshot();
+
+		WebElement password = driver.findElement(By.xpath(PageTest.password));
+		password.sendKeys(Database.wrongPasswordLoginPage);
+		screenshot();
+
+		WebElement loginButton = driver.findElement(By.xpath(PageTest.loginButton));
+		loginButton.click();
+
+		Assertions.assertEquals(expected, driver.findElement(By.xpath(PageTest.errorLogin)).getText());
+		screenshot();
 	}
 
+	@Test
+	void validUsernameAndPassword() {
+		currentLinkToTest("Form Authentication");
+		String expected = "You logged into a secure area!\n×";
+
+		WebElement username = driver.findElement(By.xpath(PageTest.username));
+		username.sendKeys(Database.rightUsernameLoginPage);
+		screenshot();
+
+		WebElement password = driver.findElement(By.xpath(PageTest.password));
+		password.sendKeys(Database.rightPasswordLoginPage);
+		screenshot();
+
+		WebElement loginButton = driver.findElement(By.xpath(PageTest.loginButton));
+		loginButton.click();
+
+		Assertions.assertEquals(expected, driver.findElement(By.xpath(PageTest.errorLogin)).getText());
+		screenshot();
+	}
+
+	@AfterEach
+	public void end() {
+		driver.quit();
+	}
 }
