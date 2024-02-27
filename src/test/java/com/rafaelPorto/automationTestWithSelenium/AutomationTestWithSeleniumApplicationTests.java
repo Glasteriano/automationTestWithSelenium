@@ -7,24 +7,18 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 import org.springframework.util.FileCopyUtils;
 import resource.Database;
 import resource.PageTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
 class AutomationTestWithSeleniumApplicationTests {
 	static WebDriver driver;
-	static List<WebElement> allLinksList;
 
 	private void currentLinkToTest(String linkText) {
 
