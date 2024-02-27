@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.FileCopyUtils;
 import resource.Database;
@@ -74,6 +75,18 @@ class AutomationTestWithSeleniumApplicationTests {
 			screenshot();
 			driver.navigate().back();
 		}
+	}
+
+	@Test
+	void dropdown() {
+		currentLinkToTest("Dropdown");
+		String expected = "Option 1";
+
+		Select select = new Select(driver.findElement(By.xpath(PageTest.dropdown)));
+		select.selectByValue("1");
+
+		Assertions.assertEquals(expected, driver.findElement(By.xpath(PageTest.selectedOption)).getText());
+		screenshot();
 	}
 
 	@AfterAll
